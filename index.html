@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- saved from url=(0076)file:///C:/Users/cdep9/Downloads/royalty_daycare_nanny_calculator%20(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daycare vs. Nanny Cost Calculator | Royalty Payroll Group</title>
+<style>
+:root{
+  --green:#173f34;
+  --green2:#245c4c;
+  --gold:#c6a15b;
+  --cream:#f8f4ec;
+  --ink:#222;
+  --muted:#666;
+  --white:#fff;
+  --line:#ddd5c6;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink)}
+.wrap{max-width:1100px;margin:auto;padding:28px 18px 50px}
+.hero{background:var(--green);color:#fff;padding:30px;border-radius:18px 18px 0 0;text-align:center}
+.hero h1{margin:0 0 8px;font-family:Georgia,serif;font-size:clamp(28px,4vw,44px)}
+.hero p{margin:0;line-height:1.5}
+.panel{background:#fff;padding:24px;border:1px solid var(--line)}
+.section{border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:18px}
+.section h2{font-family:Georgia,serif;color:var(--green);margin:0 0 14px;font-size:23px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+label{display:block;font-weight:700;margin-bottom:6px}
+small.help{display:block;color:var(--muted);font-weight:400;margin-top:4px;line-height:1.35}
+input,select{width:100%;padding:12px;border:1px solid #bbb;border-radius:9px;font-size:16px;background:#fff}
+.child-row{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+button{cursor:pointer}
+.primary{width:100%;border:0;border-radius:10px;padding:14px 18px;background:var(--gold);color:#1c261f;font-size:18px;font-weight:800}
+.secondary{border:1px solid var(--green);background:#fff;color:var(--green);border-radius:9px;padding:10px 13px;font-weight:700}
+.results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}
+.card{border-radius:14px;padding:20px;border:1px solid var(--line);background:#fff}
+.card h3{font-family:Georgia,serif;color:var(--green);margin:0 0 14px}
+.line{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #eee}
+.line strong{text-align:right}
+.total{font-size:19px;border-bottom:0;color:var(--green)}
+.comparison{margin-top:18px;padding:20px;border-radius:14px;background:var(--green);color:#fff;text-align:center}
+.comparison .big{font-size:30px;font-weight:800;color:#f4d58a;margin:8px 0}
+.cta{display:inline-block;margin-top:14px;padding:13px 20px;border-radius:9px;background:var(--gold);color:#1d281f;text-decoration:none;font-weight:800}
+.disclaimer{font-size:12px;line-height:1.55;color:#626262;margin-top:18px}
+.footer{background:#efe8dc;border:1px solid var(--line);border-top:0;padding:18px;border-radius:0 0 18px 18px;text-align:center;color:#4b4b4b}
+.hidden{display:none}
+@media(max-width:760px){
+ .grid,.grid3,.results,.child-row{grid-template-columns:1fr}
+ .hero,.panel{padding:20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>Daycare vs. Nanny Cost Calculator</h1>
+    <p>Compare your family's actual childcare schedule with the estimated cost of hiring a household employee.</p>
+  </div>
+
+  <div class="panel">
+    <div class="section">
+      <h2>1. Daycare and Childcare Costs</h2>
+      <p style="margin-top:0;color:#666">Enter the weekly cost for each child. You can include daycare, preschool, before/after-school care, or summer care.</p>
+      <div id="children">
+        <div class="child-row">
+          <input aria-label="Child description" value="Child 1" class="child-name">
+          <input aria-label="Weekly childcare cost" type="number" min="0" step="1" value="425" class="child-cost" placeholder="Weekly cost">
+          <select aria-label="Weeks per year" class="child-weeks">
+            <option value="52" selected="">52 weeks/year</option>
+            <option value="48">48 weeks/year</option>
+            <option value="44">44 weeks/year</option>
+            <option value="40">40 weeks/year</option>
+            <option value="36">36 weeks/year</option>
+          </select>
+        </div>
+        <div class="child-row">
+          <input aria-label="Child description" value="Child 2" class="child-name">
+          <input aria-label="Weekly childcare cost" type="number" min="0" step="1" value="375" class="child-cost" placeholder="Weekly cost">
+          <select aria-label="Weeks per year" class="child-weeks">
+            <option value="52" selected="">52 weeks/year</option>
+            <option value="48">48 weeks/year</option>
+            <option value="44">44 weeks/year</option>
+            <option value="40">40 weeks/year</option>
+            <option value="36">36 weeks/year</option>
+          </select>
+        </div>
+      </div>
+      <button class="secondary" type="button" onclick="addChild()">+ Add another child or program</button>
+    </div>
+
+    <div class="section">
+      <h2>2. Nanny Schedule and Wage</h2>
+      <div class="grid3">
+        <div>
+          <label>Hourly wage</label>
+          <input id="wage" type="number" min="0" step=".25" value="19">
+          <small class="help">2026 minimum wage in Orange and Rockland Counties is $16.00, but actual market wages may be higher.</small>
+        </div>
+        <div>
+          <label>Regular hours per week</label>
+          <input id="regularHours" type="number" min="0" max="168" step=".25" value="40">
+        </div>
+        <div>
+          <label>Overtime hours per week</label>
+          <input id="otHours" type="number" min="0" max="128" step=".25" value="0">
+          <small class="help">This estimate uses 1.5× the regular rate.</small>
+        </div>
+        <div>
+          <label>Weeks employed per year</label>
+          <input id="weeks" type="number" min="1" max="52" step="1" value="52">
+        </div>
+        <div>
+          <label>Additional weekly benefits or reimbursements</label>
+          <input id="extras" type="number" min="0" step="1" value="0">
+          <small class="help">Optional estimate for transportation, health stipend, meals, or other recurring costs.</small>
+        </div>
+        <div>
+          <label>Royalty Payroll Group monthly fee</label>
+          <input id="serviceFee" type="number" min="0" step="1" value="199">
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>3. 2026 Employer Tax Assumptions</h2>
+      <div class="grid3">
+        <div>
+          <label>Employer Social Security</label>
+          <input id="ssRate" type="number" value="6.2" step=".01">
+          <small class="help">Percent of covered wages.</small>
+        </div>
+        <div>
+          <label>Employer Medicare</label>
+          <input id="medRate" type="number" value="1.45" step=".01">
+          <small class="help">Percent of covered wages.</small>
+        </div>
+        <div>
+          <label>FUTA effective rate</label>
+          <input id="futaRate" type="number" value="0.6" step=".01">
+          <small class="help">Estimated effective rate when the full state credit applies.</small>
+        </div>
+        <div>
+          <label>FUTA wage base</label>
+          <input id="futaBase" type="number" value="7000" step="100">
+        </div>
+        <div>
+          <label>NY unemployment rate</label>
+          <input id="nyRate" type="number" value="4.1" step=".001">
+          <small class="help">2026 new-employer total rate estimate, including RSF.</small>
+        </div>
+        <div>
+          <label>NY unemployment wage base</label>
+          <input id="nyBase" type="number" value="17600" step="100">
+        </div>
+      </div>
+    </div>
+
+    <button class="primary" type="button" onclick="calculate()">Calculate My Comparison</button>
+
+    <div id="resultArea" class="hidden">
+      <div class="results">
+        <div class="card">
+          <h3>Current Childcare</h3>
+          <div class="line"><span>Average weekly cost</span><strong id="dayWeek">$0</strong></div>
+          <div class="line"><span>Average monthly cost</span><strong id="dayMonth">$0</strong></div>
+          <div class="line total"><span>Annual cost</span><strong id="dayYear">$0</strong></div>
+        </div>
+
+        <div class="card">
+          <h3>Nanny + Household Payroll</h3>
+          <div class="line"><span>Annual gross wages</span><strong id="wagesYear">$0</strong></div>
+          <div class="line"><span>Employer FICA</span><strong id="fica">$0</strong></div>
+          <div class="line"><span>Federal unemployment</span><strong id="futa">$0</strong></div>
+          <div class="line"><span>NY unemployment estimate</span><strong id="nyui">$0</strong></div>
+          <div class="line"><span>Additional benefits/reimbursements</span><strong id="extrasYear">$0</strong></div>
+          <div class="line"><span>Royalty Payroll Group</span><strong id="serviceYear">$0</strong></div>
+          <div class="line"><span>Average weekly total</span><strong id="nannyWeek">$0</strong></div>
+          <div class="line"><span>Average monthly total</span><strong id="nannyMonth">$0</strong></div>
+          <div class="line total"><span>Annual total</span><strong id="nannyYear">$0</strong></div>
+        </div>
+      </div>
+
+      <div class="comparison">
+        <div id="winner">Your comparison</div>
+        <div id="difference" class="big">$0</div>
+        <div id="differenceText"></div>
+        <a class="cta" href="https://calendly.com/" target="_blank" rel="noopener">Schedule a Household Payroll Consultation</a>
+      </div>
+
+      <div class="disclaimer">
+        <strong>Important:</strong> This calculator provides general estimates for educational and budgeting purposes only. It does not calculate employee income-tax withholding, the employee's share of FICA, workers' compensation, disability/Paid Family Leave coverage, paid leave, agency fees, tax credits, insurance, or every federal, state, and local requirement. Actual rates and obligations depend on the facts, the employer's assigned rate, the worker's classification and work arrangement, and current law. Results are not tax or legal advice.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Royalty Payroll Group · Household Payroll Made Simple
+  </div>
+</div>
+
+<script>
+const money = n => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(n || 0);
+
+function addChild(){
+  const count = document.querySelectorAll('.child-row').length + 1;
+  const row = document.createElement('div');
+  row.className = 'child-row';
+  row.innerHTML = `
+    <input aria-label="Child description" value="Child ${count}" class="child-name">
+    <input aria-label="Weekly childcare cost" type="number" min="0" step="1" value="0" class="child-cost" placeholder="Weekly cost">
+    <select aria-label="Weeks per year" class="child-weeks">
+      <option value="52" selected>52 weeks/year</option>
+      <option value="48">48 weeks/year</option>
+      <option value="44">44 weeks/year</option>
+      <option value="40">40 weeks/year</option>
+      <option value="36">36 weeks/year</option>
+    </select>`;
+  document.getElementById('children').appendChild(row);
+}
+
+function val(id){ return Math.max(0, parseFloat(document.getElementById(id).value) || 0); }
+
+function calculate(){
+  let daycareAnnual = 0;
+  document.querySelectorAll('.child-row').forEach(row=>{
+    const cost = Math.max(0, parseFloat(row.querySelector('.child-cost').value) || 0);
+    const weeks = Math.max(0, parseFloat(row.querySelector('.child-weeks').value) || 0);
+    daycareAnnual += cost * weeks;
+  });
+
+  const wage = val('wage');
+  const regularHours = val('regularHours');
+  const otHours = val('otHours');
+  const weeks = Math.min(52, val('weeks'));
+  const extrasAnnual = val('extras') * weeks;
+  const serviceAnnual = val('serviceFee') * 12;
+
+  const weeklyWages = wage * regularHours + wage * 1.5 * otHours;
+  const annualWages = weeklyWages * weeks;
+
+  const ss = annualWages * val('ssRate') / 100;
+  const med = annualWages * val('medRate') / 100;
+  const fica = ss + med;
+  const futa = Math.min(annualWages, val('futaBase')) * val('futaRate') / 100;
+  const nyui = Math.min(annualWages, val('nyBase')) * val('nyRate') / 100;
+
+  const nannyAnnual = annualWages + fica + futa + nyui + extrasAnnual + serviceAnnual;
+  const daycareMonthly = daycareAnnual / 12;
+  const daycareWeekly = daycareAnnual / 52;
+  const nannyMonthly = nannyAnnual / 12;
+  const nannyWeekly = nannyAnnual / 52;
+  const diff = Math.abs(nannyAnnual - daycareAnnual);
+
+  document.getElementById('dayWeek').textContent = money(daycareWeekly);
+  document.getElementById('dayMonth').textContent = money(daycareMonthly);
+  document.getElementById('dayYear').textContent = money(daycareAnnual);
+  document.getElementById('wagesYear').textContent = money(annualWages);
+  document.getElementById('fica').textContent = money(fica);
+  document.getElementById('futa').textContent = money(futa);
+  document.getElementById('nyui').textContent = money(nyui);
+  document.getElementById('extrasYear').textContent = money(extrasAnnual);
+  document.getElementById('serviceYear').textContent = money(serviceAnnual);
+  document.getElementById('nannyWeek').textContent = money(nannyWeekly);
+  document.getElementById('nannyMonth').textContent = money(nannyMonthly);
+  document.getElementById('nannyYear').textContent = money(nannyAnnual);
+  document.getElementById('difference').textContent = money(diff) + ' per year';
+
+  if (nannyAnnual < daycareAnnual){
+    document.getElementById('winner').textContent = 'Based on these entries, the nanny option is estimated to cost less.';
+    document.getElementById('differenceText').textContent = 'Estimated difference: ' + money(diff/12) + ' per month.';
+  } else if (daycareAnnual < nannyAnnual){
+    document.getElementById('winner').textContent = 'Based on these entries, your current childcare option is estimated to cost less.';
+    document.getElementById('differenceText').textContent = 'Estimated difference: ' + money(diff/12) + ' per month.';
+  } else {
+    document.getElementById('winner').textContent = 'The two options are approximately equal based on these entries.';
+    document.getElementById('differenceText').textContent = '';
+  }
+
+  document.getElementById('resultArea').classList.remove('hidden');
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+
+</body></html>
